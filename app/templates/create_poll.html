@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}
+VoteHub - Nowe głosowanie
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <div class="form-header">
+
+        <a href="/" class="back-link">
+            ← Powrót
+        </a>
+
+        <div class="eyebrow">
+            NEW POLL
+        </div>
+
+        <h1>
+            Utwórz głosowanie
+        </h1>
+
+        <p>
+            Zadaj pytanie i przygotuj odpowiedzi,
+            na które będą mogli głosować użytkownicy.
+        </p>
+
+    </div>
+
+    <form id="create-poll-form" class="form-card">
+
+        <div class="form-group">
+
+            <label for="question">
+                Pytanie
+            </label>
+
+            <input
+                type="text"
+                id="question"
+                placeholder="Np. Który system operacyjny preferujesz?"
+                maxlength="500"
+                required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Odpowiedzi
+            </label>
+
+            <p class="form-description">
+                Dodaj minimum dwie odpowiedzi.
+            </p>
+
+            <div id="options-container">
+
+                <div class="option-input">
+
+                    <input
+                        type="text"
+                        class="option-field"
+                        placeholder="Odpowiedź 1"
+                        required
+                    >
+
+                </div>
+
+                <div class="option-input">
+
+                    <input
+                        type="text"
+                        class="option-field"
+                        placeholder="Odpowiedź 2"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                id="add-option"
+                class="button-secondary"
+            >
+                + Dodaj odpowiedź
+            </button>
+
+        </div>
+
+        <div id="form-error" class="error-message hidden"></div>
+
+        <div class="form-actions">
+
+            <a href="/" class="button-secondary">
+                Anuluj
+            </a>
+
+            <button type="submit" class="button-primary">
+                Utwórz głosowanie
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/create_poll.js') }}"></script>
+
+{% endblock %}

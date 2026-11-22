@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}
+VoteHub - Głosowania
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="eyebrow">
+            PLATFORM FOR VOTING
+        </div>
+
+        <h1>
+            Twój głos<br>
+            <span>ma znaczenie.</span>
+        </h1>
+
+        <p>
+            Twórz głosowania, zbieraj opinie
+            i obserwuj wyniki w czasie rzeczywistym.
+        </p>
+
+    </div>
+
+    <div class="hero-card">
+
+        <div class="hero-card-icon">
+            ◉
+        </div>
+
+        <div>
+            <strong>VoteHub</strong>
+
+            <p>
+                Proste głosowania.<br>
+                Natychmiastowe wyniki.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section-header">
+
+    <div>
+
+        <h2>Dostępne głosowania</h2>
+
+        <p>
+            Wybierz głosowanie i oddaj swój głos.
+        </p>
+
+    </div>
+
+    <a href="/create" class="button-primary">
+        + Nowe głosowanie
+    </a>
+
+</section>
+
+<div id="poll-list" class="poll-grid">
+
+    <div class="loading">
+        Ładowanie głosowań...
+    </div>
+
+</div>
+
+<div id="empty-state" class="empty-state hidden">
+
+    <div class="empty-icon">
+        ◉
+    </div>
+
+    <h3>Brak głosowań</h3>
+
+    <p>
+        Aktualnie nie ma żadnych głosowań.
+        Utwórz pierwsze!
+    </p>
+
+    <a href="/create" class="button-primary">
+        Utwórz głosowanie
+    </a>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}VoteHub{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="navbar-content">
+
+            <a href="/" class="logo">
+                <span class="logo-icon">V</span>
+                VoteHub
+            </a>
+
+            <nav>
+                <a href="/">Głosowania</a>
+                <a href="/create" class="nav-button">
+                    + Utwórz głosowanie
+                </a>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer>
+
+        <p>
+            VoteHub · System głosowań
+        </p>
+
+    </footer>
+
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>

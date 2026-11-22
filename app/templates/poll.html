@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+VoteHub - Głosowanie
+{% endblock %}
+
+{% block content %}
+
+<div class="poll-page">
+
+    <a href="/" class="back-link">
+        ← Wszystkie głosowania
+    </a>
+
+    <div id="poll-content">
+
+        <div class="loading">
+            Ładowanie głosowania...
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    const POLL_ID = {{ poll_id }};
+</script>
+
+<script src="{{ url_for('static', filename='js/poll.js') }}"></script>
+
+{% endblock %}

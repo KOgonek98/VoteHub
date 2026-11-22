@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: votehub
+  labels:
+    app: votehub
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: votehub
+
+  template:
+    metadata:
+      labels:
+        app: votehub
+
+    spec:
+      containers:
+        - name: votehub
+          image: votehub:1.3
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 5000
+
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: votehub-db-secret
+                  key: SECRET_KEY
+
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: votehub-db-secret
+                  key: DATABASE_URL
+
+            - name: FLASK_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: votehub-config
+                  key: FLASK_ENV
+
+            - name: APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: votehub-config
+                  key: APP_PORT
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: votehub-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: votehub
+      POSTGRES_USER: votehub
+      POSTGRES_PASSWORD: votehub_password
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+    networks:
+      - votehub-network
+
+  app:
+    build: .
+    container_name: votehub-app
+    restart: unless-stopped
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      SECRET_KEY: votehub_secret_key
+      DATABASE_URL: postgresql+psycopg://votehub:votehub_password@postgres:5432/votehub
+
+    depends_on:
+      - postgres
+
+    networks:
+      - votehub-network
+
+volumes:
+  postgres_data:
+
+networks:
+  votehub-network:

@@ -17,8 +17,8 @@ Projekt został przygotowany w ramach zajęć dotyczących konteneryzacji i orki
 
 System składa się z dwóch głównych komponentów:
 
-- **VoteHub** – aplikacja webowa uruchamiana w Kubernetes jako Deployment.
-- **PostgreSQL** – baza danych uruchamiana jako StatefulSet z PersistentVolumeClaim.
+- **VoteHub** - aplikacja webowa uruchamiana w Kubernetes jako Deployment.
+- **PostgreSQL** - baza danych uruchamiana jako StatefulSet z PersistentVolumeClaim.
 
 Aplikacja komunikuje się z bazą danych za pośrednictwem wewnętrznego Service Kubernetes.
 
